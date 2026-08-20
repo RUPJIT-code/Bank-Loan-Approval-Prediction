@@ -5,7 +5,6 @@ import pandas as pd
 import streamlit as st
 import os
 
-
 API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/predict")
 # ----------------------------------------------------------------------
 # Page config
@@ -21,8 +20,8 @@ st.set_page_config(
 # ----------------------------------------------------------------------
 @st.cache_resource
 def load_artifacts():
-    model = joblib.load(API_URL / "logistic_regression.pkl")
-    scaler = joblib.load(API_URL / "scaler.pkl")
+    model = joblib.load("models\logistic_regression.pkl")
+    scaler = joblib.load("models\scaler.pkl")
     return model, scaler
 
 
