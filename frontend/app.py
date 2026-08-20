@@ -1,4 +1,3 @@
-from pathlib import Path
 import requests
 import joblib
 import pandas as pd
@@ -20,14 +19,12 @@ st.set_page_config(
 # ----------------------------------------------------------------------
 @st.cache_resource
 def load_artifacts():
-    model = joblib.load("models\logistic_regression.pkl")
-    scaler = joblib.load("models\scaler.pkl")
+    model = joblib.load("models/logistic_regression.pkl")
+    scaler = joblib.load("models/scaler.pkl")
     return model, scaler
-
 
 model, scaler = load_artifacts()
 
-# Exact column order the model was trained on (must match training notebook)
 FEATURE_ORDER = [
     "Gender",
     "Married",
@@ -45,9 +42,7 @@ FEATURE_ORDER = [
     "Property_Area_Urban",
 ]
 
-# ----------------------------------------------------------------------
 # Header
-# ----------------------------------------------------------------------
 st.title("🏦 Bank Loan Approval Predictor")
 st.write(
     "Fill in the applicant details below and click **Predict** to find out "
@@ -57,9 +52,7 @@ st.write(
 
 st.divider()
 
-# ----------------------------------------------------------------------
 # Input form
-# ----------------------------------------------------------------------
 with st.form("loan_form"):
     st.subheader("Applicant Information")
 
@@ -127,9 +120,7 @@ with st.form("loan_form"):
         use_container_width=True,
     )
 
-# ----------------------------------------------------------------------
 # Prediction
-# ----------------------------------------------------------------------
 if submitted:
     # --- Encode inputs exactly as done in the training notebook ---
     gender_enc = 1 if gender == "Male" else 0            # Female=0, Male=1

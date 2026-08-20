@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import joblib
 import pandas as pd
 
@@ -7,7 +6,6 @@ MODEL_DIR = Path(__file__).resolve().parent
 
 # Load Trained Model
 model = joblib.load(MODEL_DIR / "logistic_regression.pkl")
-
 # Load Scaler
 scaler = joblib.load(MODEL_DIR / "scaler.pkl")
 
@@ -33,7 +31,7 @@ FEATURE_ORDER = [
     "Property_Area_Semiurban",
     "Property_Area_Urban",
 ]
-
+ 
 
 def predict_output(user_input: dict):
     dependents = user_input["dependents"]
